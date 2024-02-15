@@ -16,7 +16,7 @@ const data_games = [
     {
       "id": 3,
       "name": "Assassin's Creed: Valhalla",
-      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202006/1520/EDtkdijFRwbmGKk1G9lrDoEF.png",
+      "image": "https://images.pushsquare.com/44d8c567ed72a/cyberpunk-2077s-cover-featuring-male-v.large.jpg",
       "new_price": 55.99,
       "old_price": 89.99
     },

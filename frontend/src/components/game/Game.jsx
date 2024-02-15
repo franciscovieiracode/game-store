@@ -9,10 +9,10 @@ export const Game = (props) => {
         <p>{props.name}</p>
         <div className="game-prices">
             <div className="game-price-new">
-                {props.new_price}
+                {props.new_price}€
             </div>
             <div className="game-price-old">
-                {props.old_price}
+                {props.old_price}€
             </div>
         </div>
     </div>
