@@ -7,7 +7,7 @@
   .gameDetails {
     position: absolute;
     z-index: 1;
-    top: 15%;
+    top: 20%;
     left: 12%;
     text-align: left;
     color: #C0C0C0; 
@@ -23,4 +23,9 @@
     font-size: 35px;
     font-weight: 700;
     color: #FFD580;
+}
+
+.gameDetailsName{
+    font-size: 50px;
+    margin-top: 40px;
 }
