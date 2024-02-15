@@ -1,0 +1,26 @@
+.hero {
+    position: relative;
+    overflow: hidden;
+    height: 60vh;
+  }
+  
+  .gameDetails {
+    position: absolute;
+    z-index: 1;
+    top: 15%;
+    left: 12%;
+    text-align: left;
+    color: #C0C0C0; 
+    font-size: 25px;
+  }
+  
+  .hero-image img {
+    width: 100%;
+    height: fit-content;
+    object-fit: fill;
+  }
+  .gameDetails span {
+    font-size: 35px;
+    font-weight: 700;
+    color: #FFD580;
+}
