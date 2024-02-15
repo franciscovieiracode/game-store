@@ -1,4 +1,4 @@
-.trending{
+.trending {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,28 +7,39 @@
     overflow: hidden;
 }
 
-.trending img{
-    max-height: 300px; /* Adjust this value according to your preference */
+.trending img {
+    max-height: 300px;
+    /* Adjust this value according to your preference */
 }
 
-.trending h1{
+.trending h1 {
     margin-top: 50px;
     color: #171717;
     font-size: 50px;
     font-weight: 600;
 }
 
-.trending hr{
+.trending hr {
     width: 200px;
     height: 6px;
     border-radius: 10px;
     background: #252525;
 }
 
-.trending-games{
+.trending-games {
     margin-top: 50px;
     display: flex;
     flex-direction: row;
     gap: 80px;
     width: fit-content;
+}
+@media (max-width: 1601px) {
+    .trending {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        height: 80vh;
+        overflow: hidden;
+    }
 }
