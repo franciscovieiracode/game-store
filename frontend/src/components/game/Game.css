@@ -1,5 +1,6 @@
 .game{
     width: 100%;
+    cursor: pointer;
 }
 
 .game p{
@@ -27,4 +28,9 @@
 .game:hover{
     transform: scale(1.05);
     transition: 0.6s;
+}
+
+.game a {
+    text-decoration: none;
+    color: black;
 }
