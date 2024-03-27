@@ -1,39 +1,124 @@
-/* Add this to your CSS file or include it in your React component */
 .game-detail {
-    margin-top: 7%;
     display: flex;
-    align-items: flex-start;
-    padding: 20px; /* Add padding as needed */
-  }
+    flex-direction: row;
+}
 
-  
-  .left {
-    flex: 1; 
-  }
-  
-  .right {
+.game-detail-full {
+    background-color: #f5f5f5;
+}
+
+.left {
+    flex: 1;
     margin-top: 5%;
-    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-right: 0;
+}
+
+.right {
+    margin-top: 5%;
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3vh;    
+    gap: 6vh;
+    align-items: center;
+    margin-right: 200px;
 }
 
-.prices{
+.prices {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 4rem;
 }
 
-.old-price{
-    color: #8c8c8c;
-    font-size: 18px;
-    font-weight: 500;
-    text-decoration: line-through;}
 
-.new-price{
-    column-gap: #374151;
+
+.new-price {
     font-size: 18px;
     font-weight: 600;
+}
+
+.percentage{
+}
+
+.small-image {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    width: calc(32.3% - 30px);
+    max-width: 100%;
+    height: auto;
+}
+
+.big-image {
+    width: calc(65% - 30px);
+    max-width: 100%;
+    height: auto;
+}
+
+.big-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.small-image img {
+    max-width: 70%;
+    height: auto;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0 15px 15px;
+    width: calc(65% - 30px);
+}
+
+.description h2 {
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.right button {
+    width: 20rem;
+    height: 38px;
+    outline: none;
+    border: 1px solid #454545;
+    border-radius: 2rem;
+    color: #454545;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #FFAC1C;
+    cursor: pointer;
+}
+
+.right button:active{
+    background: #f3f3f3;
+}
+
+.info{
+    font-weight: 800;
+    font-size: 2rem;
+    color: #374151;
+}
+
+.btnfav{
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+}
+
+.btnfav img {
+    background-color: #FFAC1C;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.old-price {
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: line-through;
+    margin-left: 0;
 }

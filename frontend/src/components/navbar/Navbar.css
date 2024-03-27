@@ -1,5 +1,6 @@
 .navbar {
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
     padding: 16px;
     box-shadow: 0 1px 3px -2px black;
@@ -89,4 +90,13 @@
 .navbar a {
     text-decoration: none;
     color: #000033;
+}
+
+/* Media query for devices smaller than a laptop */
+@media screen and (max-width: 1024px) {
+    .navbar {
+        flex-direction: row; 
+    }
+    
+
 }

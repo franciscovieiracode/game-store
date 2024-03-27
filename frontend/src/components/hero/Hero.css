@@ -11,7 +11,7 @@
     left: 12%;
     text-align: left;
     color: #C0C0C0; 
-    font-size: 25px;
+    font-size: 2rem;
   }
   
   .hero-image img {
@@ -20,12 +20,31 @@
     object-fit: fill;
   }
   .gameDetails span {
-    font-size: 35px;
+    font-size: 2.8rem;
     font-weight: 700;
     color: #FFD580;
 }
 
 .gameDetailsName{
-    font-size: 50px;
-    margin-top: 40px;
+    font-size: 3rem;
+    margin-top: 1.8rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .hero {
+    height: max-content;
+  }
+  .gameDetails {
+    left: 5%;
+    font-size: 0.8rem;
+  }
+  .gameDetails span {
+    font-size: 1rem;
+}
+
+.gameDetailsName{
+    font-size: 0.8rem;
+    margin-top: 1.5rem;
+}
+
 }
