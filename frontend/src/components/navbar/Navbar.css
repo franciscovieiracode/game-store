@@ -94,9 +94,41 @@
 
 /* Media query for devices smaller than a laptop */
 @media screen and (max-width: 1024px) {
-    .navbar {
-        flex-direction: row; 
+    .nav-menu {
+        gap: 20px; /* Adjust the gap between menu items */
     }
+    
+    .nav-login-cart {
+        gap: 20px; /* Adjust the gap between login button, cart icon, and count */
+    }
+    
+    .nav-login-cart button {
+        width: auto; /* Allow the button to adjust its width based on content */
+    }
+    
+    .nav-login-cart img {
+        width: 25px; /* Decrease the size of the cart icon for smaller screens */
+        height: 25px;
+    }
+    
+    .navbar {
+        flex-wrap: wrap; /* Allow items to wrap onto the next line */
+        justify-content: space-between; /* Adjust alignment */
+    }
+    
+    .nav-menu {
+        flex-basis: 100%; /* Take up full width */
+        justify-content: center; /* Center menu items */
+    }
+    
+    .nav-menu li {
+        margin-bottom: 10px; /* Add spacing between menu items */
+    }
+    
+    .nav-login-cart {
+        justify-content: center; /* Center login and cart items */
+    }
+    
     
 
 }

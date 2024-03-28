@@ -15,7 +15,7 @@ const data_sold = [
     },
     {
       "id": 7,
-      "name": "Playerunknown's Battlegrounds",
+      "name": "PubG",
       "image": "https://cdn.geekwire.com/wp-content/uploads/2017/12/Screen-Shot-2017-12-15-at-9.43.41-AM.png",
       "new_price": 0.0,
       "old_price": 12.99

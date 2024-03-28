@@ -1,6 +1,8 @@
 .game{
+    display: grid;
     width: 100%;
     cursor: pointer;
+    justify-content: center;
 }
 
 .game img {
@@ -10,6 +12,7 @@
 
 .game p{
     margin: 6px 0px;
+    max-width: 90%;
 }
 
 .game-prices{

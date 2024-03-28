@@ -9,10 +9,10 @@ export const MostSold = () => {
             <h1>MOST SOLD GAMES</h1>
             <hr />
             <div className="sold-games">
-                {data_games.map((game, i)=>{
-                    return <Game key ={i} id={game.id} name={game.name} image={game.image} new_price={game.new_price} old_price={game.old_price}/>
+                {data_games.map((game, i) => {
+                    return <Game key={i} id={game.id} name={game.name} image={game.image} new_price={game.new_price} old_price={game.old_price} />
                 })}
             </div>
         </div>
-      )
+    )
 }

@@ -1,35 +1,49 @@
-.sold{
+.sold {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5vh;
-    height: 65vh;
     overflow: hidden;
+    margin-bottom: 2.5vh;
 }
 
-.sold img{
-    max-height: 35vh; /* Adjust this value according to your preference */
-
+.sold img {
+    max-height: 35vh;
 }
 
-.sold h1{
+.sold h1 {
     margin-top: 5vh;
     color: #171717;
     font-size: 3.2rem;
     font-weight: 600;
 }
 
-.sold hr{
+.sold hr {
     width: 200px;
     height: 6px;
     border-radius: 10px;
     background: #252525;
 }
 
-.sold-games{
+.sold-games {
     margin-top: 5vh;
     display: flex;
     flex-direction: row;
     gap: 9vh;
     width: fit-content;
+}
+
+/* Media query for devices smaller than a laptop */
+@media screen and (max-width: 1024px) {
+    .sold-games {
+        flex-direction: column;
+        gap: 4vh;
+    }
+
+    .sold h1 {
+        margin-top: 3vh;
+        color: #171717;
+        font-size: 2.2rem;
+        font-weight: 700;
+    }
 }

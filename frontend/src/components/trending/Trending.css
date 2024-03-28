@@ -36,18 +36,11 @@
 /* Media query for devices smaller than a laptop */
 @media screen and (max-width: 1024px) {
     .trending {
-        display: flex;
         flex-direction: column;
-        align-items: center;
-        overflow: hidden;
-        column-gap: 0;
     }
     
     .trending-games {
-        margin-top: 5vh;
-        display: flex;
         flex-direction: column;
         gap: 4vh;
-        align-items: center;
     }
 }
