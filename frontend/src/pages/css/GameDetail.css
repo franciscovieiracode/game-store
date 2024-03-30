@@ -9,7 +9,7 @@
 
 .left {
     flex: 1;
-    margin-top: 5%;
+    margin-top: 10vh;
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -17,44 +17,76 @@
 }
 
 .right {
-    margin-top: 5%;
+    margin-top: 10vh;
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6vh;
-    align-items: center;
-    margin-right: 200px;
+    gap: 4vh;
 }
 
+.tags{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.dev-details{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.genre a {
+    cursor: pointer;
+    
+}
+
+.tags a:hover {
+    cursor: pointer;
+    color: #FFAC1C
+}
+
+.console-dropdown {
+    padding: 0.9vh;
+    border-radius: 20vh;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 1rem;
+    color: #333;
+    width: 21vh;
+  }
+
+  
 .prices {
     display: flex;
     flex-direction: row;
-    gap: 4rem;
+    gap: 2rem;
+    align-items: center;
 }
 
 
 
 .new-price {
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: 600;
+    margin-bottom: 0;
 }
 
 .percentage{
+    color:  #ff7a03
 }
 
 .small-image {
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
-    gap: 5px;
-    width: calc(32.3% - 30px);
-    max-width: 100%;
-    height: auto;
+    gap: 0.4vh;
+    width: 18.7vh;
 }
 
 .big-image {
-    width: calc(65% - 30px);
-    max-width: 100%;
+    width: 57vh;
     height: auto;
 }
 
@@ -64,19 +96,20 @@
 }
 
 .small-image img {
-    max-width: 70%;
+    max-width: 100%;
     height: auto;
 }
 
 .description {
     display: flex;
     flex-direction: column;
-    margin: 15px 0 15px 15px;
-    width: calc(65% - 30px);
+    justify-content: flex-end;
+    margin-top: 3vh;
+    margin-left: 36vh;
 }
 
 .description h2 {
-    margin-bottom: 20px;
+    margin-bottom: 1.1rem;
     font-weight: 700;
 }
 
@@ -89,9 +122,10 @@
     color: #454545;
     font-size: 20px;
     font-weight: 500;
-    background-color: #FFAC1C;
+    background: linear-gradient(to bottom, #FFAC1C, #ff7a03); /* Gradient from #ff7a03 to darker orange #e64d00 */
     cursor: pointer;
 }
+
 
 .right button:active{
     background: #f3f3f3;
@@ -111,9 +145,10 @@
 }
 
 .btnfav img {
-    background-color: #FFAC1C;
-    padding: 3px;
+    background: linear-gradient(to bottom, #FFAC1C, #ff7a03); /* Gradient from #ff7a03 to darker orange #e64d00 */
+    padding: 0.5rem;
     cursor: pointer;
+    border-radius: 1rem;
 }
 
 .old-price {
@@ -121,4 +156,29 @@
     font-weight: 500;
     text-decoration: line-through;
     margin-left: 0;
+}
+
+/* Media query for devices smaller than a laptop */
+@media screen and (max-width: 1024px) {
+    .game-detail {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .left{
+        margin-top: 3vh
+    }
+    
+    .small-image {
+        display: none;
+    }
+    .big-image {
+        display: none;
+    }
+    
+.description {
+    align-items: center;
+    margin-left: 5rem;
+    margin-right: 3rem;
+}
 }

@@ -35,7 +35,7 @@ export const GameDetail = () => {
           {data_game.name}
         </div>
         <div className="console">
-          <select value={selectedConsole} onChange={handleConsoleChange}>
+          <select value={selectedConsole} onChange={handleConsoleChange} className="console-dropdown">
             <option value="">Select Platform</option>
             {data_game.console.map((console, index) => (
               <option key={index} value={console}>
@@ -45,13 +45,30 @@ export const GameDetail = () => {
           </select>
         </div>
         <div className="prices">
+        <p className='old-price'>{data_game.old_price}€</p>
           <p className='percentage'>-30%</p>
-          <p className='old-price'>{data_game.old_price}€</p>
           <p className='new-price'>{data_game.new_price}€</p>
         </div>
         <div className="btnfav">
           <img src={heart} height={25} alt="" />
           <button onClick={teste}>Add to cart</button>
+        </div>
+        <div className="tags">
+          <div className="genre">
+          Genre: {data_game.genre.map((tag, index) => (
+            <a key={index}>
+              {tag}
+              {index !== data_game.genre.length - 1 && ', '}
+            </a>
+          ))}
+          </div>
+          <div className="dev-details">
+            <p>Developer: <a>{data_game.developer}</a> </p>
+            <p>Publisher: <a>{data_game.publisher}</a> </p>
+          </div>
+          <div className="details">
+            Release date: {data_game.release_date}
+          </div>
         </div>
       </div>
     </div>
