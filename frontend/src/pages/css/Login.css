@@ -1,0 +1,105 @@
+.login {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.left1,
+.right1 {
+    flex: 1;
+}
+
+.signup{
+    color: #ff7a03;
+    margin-top: 2vh;
+}
+
+.login-container {
+    background-color: #272727;
+    padding: 22vh;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 46.5vh;
+}
+
+.login-container a {
+    cursor: pointer;
+}
+
+.login-form h2 {
+    margin-bottom: 20px;
+    text-align: start;
+    color: #fff;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.input-group input {
+    width: 40vh;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #FFAC1C;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #ff7a03;
+}
+
+.right1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 90.5vh;
+}
+
+.right1 img {
+    width: 100%;
+    height: auto;
+}
+
+/* Media query for devices smaller than a laptop */
+@media screen and (max-width: 1024px) {
+    .login {
+        display: flex;
+        flex-direction: column;
+        height: 70vh;
+    }
+
+    .right1 {
+        display: none;
+    }
+    .login-container {
+        padding: 10vh;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 46.5vh;
+    }
+}

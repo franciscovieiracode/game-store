@@ -122,7 +122,7 @@
     color: #454545;
     font-size: 20px;
     font-weight: 500;
-    background: linear-gradient(to bottom, #FFAC1C, #ff7a03); /* Gradient from #ff7a03 to darker orange #e64d00 */
+    background: linear-gradient(to bottom, #FFAC1C, #ff7a03);
     cursor: pointer;
 }
 
