@@ -1,8 +1,10 @@
 package com.store.auth.controllers;
 
 import com.store.auth.dto.AuthRecordDto;
+import com.store.auth.dto.AuthResponseDto;
 import com.store.auth.models.UserAuthModel;
 import com.store.auth.services.AuthServices;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,13 +20,13 @@ public class AuthController {
     AuthServices authServices;
 
     @PostMapping("/register")
-    public ResponseEntity<String> saveUser(@RequestBody @Valid AuthRecordDto authRecordDto){
+    public ResponseEntity<AuthResponseDto> saveUser(@RequestBody @Valid AuthRecordDto authRecordDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(authServices.saveUser(authRecordDto));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody @Valid AuthRecordDto authRecordDto){
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(authServices.authenticateUser(authRecordDto.email(), authRecordDto.passwordHash()));
+    public ResponseEntity<AuthResponseDto> login(@RequestBody @Valid AuthRecordDto authRecordDto, HttpServletResponse httpServletResponse){
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(authServices.authenticateUser(authRecordDto.email(), authRecordDto.passwordHash(), httpServletResponse));
 
     }
 }

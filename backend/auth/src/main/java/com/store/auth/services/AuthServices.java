@@ -1,10 +1,13 @@
 package com.store.auth.services;
 
 import com.store.auth.dto.AuthRecordDto;
+import com.store.auth.dto.AuthResponseDto;
 import com.store.auth.exceptions.AuthException;
 import com.store.auth.models.UserAuthModel;
 import com.store.auth.repositories.AuthRepository;
 import com.store.auth.utils.JwtUtils;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +27,7 @@ public class AuthServices {
 
 
     @Transactional
-    public String saveUser(AuthRecordDto authRecordDto) {
+    public AuthResponseDto saveUser(AuthRecordDto authRecordDto) {
 
         UserAuthModel userAuthModel = new UserAuthModel();
         BeanUtils.copyProperties(authRecordDto, userAuthModel);
@@ -35,10 +38,10 @@ public class AuthServices {
         userAuthModel.setPasswordHash(passwordEncoder.encode(authRecordDto.passwordHash()));
         authRepository.save(userAuthModel);
 
-        return jwtUtils.generateToken(userAuthModel.getEmail());
+        return new AuthResponseDto(jwtUtils.generateToken(userAuthModel.getEmail()));
     }
 
-    public String authenticateUser(String email, String password) {
+    public AuthResponseDto authenticateUser(String email, String password, HttpServletResponse httpServletResponse) {
         UserAuthModel userAuthModel = authRepository.findByEmail(email);
         if (userAuthModel == null) {
             throw new UsernameNotFoundException("User not found with email: " + email);
@@ -47,6 +50,16 @@ public class AuthServices {
             throw new AuthException("Invalid password");
         }
 
-        return jwtUtils.generateToken(email);
+        String token = jwtUtils.generateToken(email);
+
+        Cookie cookie = new Cookie("jwt", token);
+        cookie.setHttpOnly(true);
+        cookie.setSecure(true); // ✅ set to true if using HTTPS
+        cookie.setPath("/");
+        cookie.setMaxAge(24 * 60 * 60); // 1 day
+
+        httpServletResponse.addCookie(cookie);
+
+        return new AuthResponseDto(token);
     }
 }
