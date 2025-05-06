@@ -1,39 +1,32 @@
-package com.store.backend.models;
+package com.store.auth.models;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "DB_USERS")
+@Table(name = "AUTH_USERS")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserModel implements Serializable {
+public class UserAuthModel implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID userId;
 
-    @Column(nullable = false)
-    private String name;
-
     @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
-    private String password_hash;
-
-    @Column(nullable = false ,columnDefinition = "DECIMAL(10,2) DEFAULT 0.00")
-    private BigDecimal balance = BigDecimal.ZERO;
+    private String passwordHash;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
