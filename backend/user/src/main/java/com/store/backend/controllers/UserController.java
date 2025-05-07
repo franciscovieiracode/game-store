@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,12 +24,10 @@ public class UserController {
     @Autowired
     UserServices userServices;
 
-    @PostMapping("/users")
-    public ResponseEntity<UserModel> saveUser(@RequestBody @Valid UserRecordDto userRecordDto){
 
-        var userModel = new UserModel();
-        BeanUtils.copyProperties(userRecordDto, userModel);
-        return ResponseEntity.status(HttpStatus.CREATED).body(userServices.save(userModel));
+    @GetMapping("getUser")
+    public ResponseEntity<UserModel> getUser(Authentication authentication){
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(userServices.getUser(authentication));
     }
 
     @GetMapping("/getAllUsers")
