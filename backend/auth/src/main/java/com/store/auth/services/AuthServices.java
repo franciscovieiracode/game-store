@@ -1,9 +1,11 @@
 package com.store.auth.services;
 
 import com.store.auth.dto.AuthRecordDto;
+import com.store.auth.dto.AuthRecordRabbitMQ;
 import com.store.auth.dto.AuthResponseDto;
 import com.store.auth.exceptions.AuthException;
 import com.store.auth.models.UserAuthModel;
+import com.store.auth.producers.AuthProducer;
 import com.store.auth.repositories.AuthRepository;
 import com.store.auth.utils.JwtUtils;
 import jakarta.servlet.http.Cookie;
@@ -24,7 +26,8 @@ public class AuthServices {
     private JwtUtils jwtUtils;
     @Autowired
     private PasswordEncoder passwordEncoder;
-
+    @Autowired
+    AuthProducer authProducer;
 
     @Transactional
     public AuthResponseDto saveUser(AuthRecordDto authRecordDto) {
@@ -36,7 +39,11 @@ public class AuthServices {
             throw new AuthException("Email already exists");
 
         userAuthModel.setPasswordHash(passwordEncoder.encode(authRecordDto.passwordHash()));
-        authRepository.save(userAuthModel);
+        // ✅ Save → triggers UUID generation
+        userAuthModel = authRepository.save(userAuthModel);
+
+        // ✅ userAuthModel.getUserId() is now populated
+        authProducer.publishMessageEmail(userAuthModel);
 
         return new AuthResponseDto(jwtUtils.generateToken(userAuthModel.getEmail()));
     }

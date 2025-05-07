@@ -28,9 +28,8 @@ public class UserAuthModel implements Serializable {
     @Column(nullable = false)
     private String passwordHash;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-
     @Column(nullable = false)
     private boolean isActive = true;
+
+    private String name;
 }

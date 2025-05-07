@@ -20,7 +20,7 @@ public class UserModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false, unique = true)
     private UUID userId;
 
     @Column(nullable = false)
@@ -29,15 +29,10 @@ public class UserModel implements Serializable {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
-    private String password_hash;
-
     @Column(nullable = false ,columnDefinition = "DECIMAL(10,2) DEFAULT 0.00")
     private BigDecimal balance = BigDecimal.ZERO;
 
     @CreationTimestamp
-    private LocalDateTime createdAt;
-
     @Column(nullable = false)
-    private boolean isActive = true;
+    private LocalDateTime createdAt;
 }

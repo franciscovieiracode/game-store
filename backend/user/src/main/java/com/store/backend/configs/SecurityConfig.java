@@ -1,7 +1,6 @@
-package com.store.backend.security;
+package com.store.backend.configs;
 
 import com.store.backend.utils.JwtAuthFilter;
-import com.store.backend.utils.JwtDecode;
 import jakarta.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
