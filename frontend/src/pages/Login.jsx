@@ -5,6 +5,7 @@ import authService from '../api/authService'
 import userService from '../api/userService'
 import { useNavigate } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext';
+import { Link } from 'react-router-dom'
 
 
 export const Login = () => {
@@ -24,12 +25,15 @@ export const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     
-    const data = await authService.login(username, password)
-    const userData = await userService.getUserData(); 
-
-    login(userData)
-    navigate("/")
-
+    try{
+      await authService.login(username, password)
+      const userData = await userService.getUserData();
+      login(userData)
+      navigate("/")
+    } 
+    catch(error){
+      alert(error.message)
+    }
   };
 
   return (
@@ -60,7 +64,7 @@ export const Login = () => {
         </div>
         <button type="submit" className="login-button">Login</button>
         <div className="signup">
-        <a>Don´t have an account? Register Here!</a>
+        <Link to="/signup"><a>Don´t have an account? Register Here!</a></Link>
       </div>
       </form>
     </div>

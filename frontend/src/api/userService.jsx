@@ -1,11 +1,18 @@
 const userService = {
   async getUserData() {
-    const response = await fetch("http://localhost:8080/api/v1/user/getUser", {
+    const res = await fetch("http://localhost:8080/api/v1/user/getUser", {
       method: "GET",
-      headers: { "Content-Type": "application/json" },
       credentials: "include",
     });
-    return await response.json();
+    if (res.status === 403) {
+      throw new Error("Unauthorized or token invalid");
+    }
+  
+    if (res.ok) {
+      return res.json();
+    } else {
+      return null;
+    }
   },
 
   async logout() {

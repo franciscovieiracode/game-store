@@ -32,7 +32,7 @@ public class AuthServices {
     AuthProducer authProducer;
 
     @Transactional
-    public AuthResponseDto saveUser(AuthRecordDto authRecordDto) {
+    public AuthResponseDto saveUser(AuthRecordDto authRecordDto, HttpServletResponse httpServletResponse) {
 
         UserAuthModel userAuthModel = new UserAuthModel();
         BeanUtils.copyProperties(authRecordDto, userAuthModel);
@@ -41,13 +41,21 @@ public class AuthServices {
             throw new AuthException("Email already exists");
 
         userAuthModel.setPasswordHash(passwordEncoder.encode(authRecordDto.password()));
-        // ✅ Save → triggers UUID generation
         userAuthModel = authRepository.save(userAuthModel);
 
-        // ✅ userAuthModel.getUserId() is now populated
         authProducer.publishMessageEmail(userAuthModel);
 
-        return new AuthResponseDto(jwtUtils.generateToken(userAuthModel.getEmail()));
+        String token = jwtUtils.generateToken(userAuthModel.getEmail());
+
+        Cookie cookie = new Cookie("jwt", token);
+        cookie.setHttpOnly(true);
+        cookie.setSecure(false);
+        cookie.setPath("/");
+        cookie.setMaxAge(24 * 60 * 60); // 1 day
+
+        httpServletResponse.addCookie(cookie);
+
+        return new AuthResponseDto(token);
     }
 
     public AuthResponseDto authenticateUser(String email, String password, HttpServletResponse httpServletResponse) {
@@ -63,7 +71,7 @@ public class AuthServices {
 
         Cookie cookie = new Cookie("jwt", token);
         cookie.setHttpOnly(true);
-        cookie.setSecure(true);
+        cookie.setSecure(false);
         cookie.setPath("/");
         cookie.setMaxAge(24 * 60 * 60); // 1 day
 

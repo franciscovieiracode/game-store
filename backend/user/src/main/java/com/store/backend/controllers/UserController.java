@@ -25,7 +25,7 @@ public class UserController {
 
 
     @GetMapping("getUser")
-    public ResponseEntity<UserResponseDto> getUser(Authentication authentication){
+    public ResponseEntity<UserResponseDto> getUser(Authentication authentication) throws InterruptedException {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(userServices.getUser(authentication));
     }
 

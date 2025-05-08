@@ -19,11 +19,20 @@ public class UserServices {
     @Autowired
     UserRepository userRepository;
 
-    public UserResponseDto getUser(Authentication authentication){
+    public UserResponseDto getUser(Authentication authentication) throws InterruptedException {
 
-        String username = (String) authentication.getPrincipal();
+        String email = (String) authentication.getPrincipal();
 
-        UserModel user = userRepository.findByEmail(username);
+        UserModel user = userRepository.findByEmail(email);
+
+        int retries = 5;
+        while (user == null && retries > 0) {
+            user = userRepository.findByEmail(email);
+            if (user == null) {
+                Thread.sleep(500); // wait 500 ms
+                retries--;
+            }
+        }
 
         return new UserResponseDto(user.getName(), user.getEmail(), user.getBalance(), user.getCreatedAt());
 

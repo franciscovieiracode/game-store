@@ -49,7 +49,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
             } catch (Exception e) {
                 // Invalid token → optional: log or return 401
-                logger.warn("JWT validation failed: {}");
+                logger.warn("JWT validation failed: {}", e);
             }
         }
         filterChain.doFilter(request, response);

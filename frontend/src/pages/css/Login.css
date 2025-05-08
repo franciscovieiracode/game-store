@@ -10,7 +10,6 @@
 }
 
 .signup{
-    color: #ff7a03;
     margin-top: 2vh;
 }
 
@@ -27,6 +26,9 @@
 
 .login-container a {
     cursor: pointer;
+    color: #ff7a03;
+    text-decoration: none;
+    
 }
 
 .login-form h2 {

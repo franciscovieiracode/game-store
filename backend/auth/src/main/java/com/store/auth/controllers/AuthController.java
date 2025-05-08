@@ -19,8 +19,8 @@ public class AuthController {
     AuthServices authServices;
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponseDto> saveUser(@RequestBody @Valid AuthRecordDto authRecordDto){
-        return ResponseEntity.status(HttpStatus.CREATED).body(authServices.saveUser(authRecordDto));
+    public ResponseEntity<AuthResponseDto> saveUser(@RequestBody @Valid AuthRecordDto authRecordDto, HttpServletResponse httpServletResponse){
+        return ResponseEntity.status(HttpStatus.CREATED).body(authServices.saveUser(authRecordDto, httpServletResponse));
     }
 
     @PostMapping("/login")
