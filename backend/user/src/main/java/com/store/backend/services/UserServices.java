@@ -1,6 +1,7 @@
 package com.store.backend.services;
 
 import com.store.backend.dto.UserRecordDto;
+import com.store.backend.dto.UserResponseDto;
 import com.store.backend.models.UserModel;
 import com.store.backend.repositories.UserRepository;
 import jakarta.transaction.Transactional;
@@ -18,11 +19,13 @@ public class UserServices {
     @Autowired
     UserRepository userRepository;
 
-    public UserModel getUser(Authentication authentication){
+    public UserResponseDto getUser(Authentication authentication){
 
         String username = (String) authentication.getPrincipal();
 
-        return userRepository.findByEmail(username);
+        UserModel user = userRepository.findByEmail(username);
+
+        return new UserResponseDto(user.getName(), user.getEmail(), user.getBalance(), user.getCreatedAt());
 
     }
 

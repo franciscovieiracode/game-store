@@ -2,6 +2,7 @@ package com.store.backend.controllers;
 
 import ch.qos.logback.core.joran.util.beans.BeanUtil;
 import com.store.backend.dto.UserRecordDto;
+import com.store.backend.dto.UserResponseDto;
 import com.store.backend.models.UserModel;
 import com.store.backend.services.UserServices;
 import jakarta.validation.Valid;
@@ -11,13 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequestMapping("/api/v1/user/")
 @RestController
 public class UserController {
 
@@ -26,7 +25,7 @@ public class UserController {
 
 
     @GetMapping("getUser")
-    public ResponseEntity<UserModel> getUser(Authentication authentication){
+    public ResponseEntity<UserResponseDto> getUser(Authentication authentication){
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(userServices.getUser(authentication));
     }
 

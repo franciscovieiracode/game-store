@@ -1,5 +1,6 @@
 package com.store.backend.repositories;
 
+import com.store.backend.dto.UserResponseDto;
 import com.store.backend.models.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 

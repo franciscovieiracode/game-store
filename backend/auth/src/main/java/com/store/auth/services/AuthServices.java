@@ -13,6 +13,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -38,7 +40,7 @@ public class AuthServices {
         if (authRepository.existsByEmail(userAuthModel.getEmail()))
             throw new AuthException("Email already exists");
 
-        userAuthModel.setPasswordHash(passwordEncoder.encode(authRecordDto.passwordHash()));
+        userAuthModel.setPasswordHash(passwordEncoder.encode(authRecordDto.password()));
         // ✅ Save → triggers UUID generation
         userAuthModel = authRepository.save(userAuthModel);
 
@@ -51,7 +53,7 @@ public class AuthServices {
     public AuthResponseDto authenticateUser(String email, String password, HttpServletResponse httpServletResponse) {
         UserAuthModel userAuthModel = authRepository.findByEmail(email);
         if (userAuthModel == null) {
-            throw new UsernameNotFoundException("User not found with email: " + email);
+            throw new AuthException("User not found with email: " + email);
         }
         if (!passwordEncoder.matches(password, userAuthModel.getPasswordHash())) {
             throw new AuthException("Invalid password");
@@ -61,12 +63,24 @@ public class AuthServices {
 
         Cookie cookie = new Cookie("jwt", token);
         cookie.setHttpOnly(true);
-        cookie.setSecure(true); // ✅ set to true if using HTTPS
+        cookie.setSecure(true);
         cookie.setPath("/");
         cookie.setMaxAge(24 * 60 * 60); // 1 day
 
         httpServletResponse.addCookie(cookie);
 
         return new AuthResponseDto(token);
+    }
+
+    public ResponseEntity<?> logout(HttpServletResponse httpServletResponse){
+        Cookie cookie = new Cookie("jwt", null);
+        cookie.setMaxAge(0);
+        cookie.setSecure(true);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+
+        httpServletResponse.addCookie(cookie);
+
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

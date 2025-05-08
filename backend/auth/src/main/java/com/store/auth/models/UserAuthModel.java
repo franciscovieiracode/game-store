@@ -31,5 +31,6 @@ public class UserAuthModel implements Serializable {
     @Column(nullable = false)
     private boolean isActive = true;
 
+    @Transient
     private String name;
 }

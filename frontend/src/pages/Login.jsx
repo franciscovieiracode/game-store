@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import '../pages/css/Login.css';
 import login_image from '../components/assets/login.jpg'
+import authService from '../api/authService'
+import userService from '../api/userService'
+import { useNavigate } from 'react-router-dom'
+import { useUser } from '../contexts/UserContext';
+
 
 export const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { login } = useUser();
+  const navigate = useNavigate();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -14,10 +21,15 @@ export const Login = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Add your login logic here
-    console.log('Logging in with:', username, password);
+    
+    const data = await authService.login(username, password)
+    const userData = await userService.getUserData(); 
+
+    login(userData)
+    navigate("/")
+
   };
 
   return (
