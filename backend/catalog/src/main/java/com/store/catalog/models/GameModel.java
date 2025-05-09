@@ -1,5 +1,6 @@
 package com.store.catalog.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,8 +23,8 @@ public class GameModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private UUID itemId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID gameId;
 
     @Column(nullable = false)
     private String name;
@@ -32,7 +33,7 @@ public class GameModel implements Serializable {
     private String description;
 
     @Column(nullable = false)
-    private Date releaseDate;
+    private String releaseDate;
 
     @Column(nullable = false)
     private String developer;
@@ -40,6 +41,7 @@ public class GameModel implements Serializable {
     @Column(nullable = false)
     private String publisher;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "gameModel")
     private List<GamePlatformModel> gamePlatformModels;
 

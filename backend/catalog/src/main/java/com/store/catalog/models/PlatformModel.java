@@ -1,5 +1,7 @@
 package com.store.catalog.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.store.catalog.enums.PlatformEnums;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,13 +19,17 @@ import java.util.List;
 @Table(name = "PLATFORM")
 public class PlatformModel {
 
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int platformId;
 
-    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, unique = true)
     private PlatformEnums platformEnums;
 
+    @JsonIgnore
+    @JsonBackReference
     @OneToMany(mappedBy = "platformModel")
     private List<GamePlatformModel> gamePlatformModels;
 
