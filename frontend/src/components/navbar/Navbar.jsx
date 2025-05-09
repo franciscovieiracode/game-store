@@ -6,10 +6,12 @@ import search_icon from '../assets/search_icon.png';
 import profile_icon from '../assets/profile_icon.png'; // add a user icon image
 import { Link } from 'react-router-dom';
 import { useUser } from '../../contexts/UserContext';
+import { Menu } from '@headlessui/react';
 
 export const Navbar = () => {
   const { user, logout } = useUser();
   const [showDropdown, setShowDropdown] = useState(false);
+  
 
   return (
     <div className='navbar'>
