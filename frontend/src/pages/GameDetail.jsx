@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';  
 import data_game from '../components/assets/data single';
 import '../pages/css/GameDetail.css';
 import heart from '../components/assets/heart.png';
+import gameService from '../api/catalogService'
+
 
 export const GameDetail = () => {
   const [selectedConsole, setSelectedConsole] = useState('');
+  const { gameId } = useParams();  
+  const [gameData, setGameData] = useState(null);  // Store the fetched game data
+
+  const [loading, setLoading] = useState(true);  // Track loading state
+
 
   const handleConsoleChange = (event) => {
     setSelectedConsole(event.target.value);
@@ -13,6 +21,31 @@ export const GameDetail = () => {
   const teste = () => {
     alert(`Added to cart for ${selectedConsole}`);
   };
+
+  useEffect(() => {
+    const fetchGameData = async () => {
+      try {
+          const data_games = await gameService.findById(gameId);
+          console.log(data_games)
+          
+          setGameData(data_games); 
+          setLoading(false); 
+      } catch (err) {
+         
+      }
+  };
+
+    fetchGameData();
+  }, [gameId]); 
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  // If no data available, show a message
+  if (!gameData) {
+    return <div>Game details not found.</div>;
+  }
 
   return (
     <div className='game-detail'>
@@ -27,12 +60,12 @@ export const GameDetail = () => {
         </div>
         <div className="description">
           <h2>ABOUT</h2>
-          <p>{data_game.about}</p>
+          <p>{gameData.description}</p>
         </div>
       </div>
       <div className="right">
         <div className="info">
-          {data_game.name}
+          {gameData.name}
         </div>
         <div className="console">
           <select value={selectedConsole} onChange={handleConsoleChange} className="console-dropdown">
@@ -45,9 +78,9 @@ export const GameDetail = () => {
           </select>
         </div>
         <div className="prices">
-        <p className='old-price'>{data_game.old_price}€</p>
+        <p className='old-price'>{gameData.gamePlatformModels[0].price}€</p>
           <p className='percentage'>-30%</p>
-          <p className='new-price'>{data_game.new_price}€</p>
+          <p className='new-price'>{gameData.gamePlatformModels[0].price }€</p>
         </div>
         <div className="btnfav">
           <img src={heart} height={25} alt="" />
@@ -63,11 +96,11 @@ export const GameDetail = () => {
           ))}
           </div>
           <div className="dev-details">
-            <p>Developer: <a>{data_game.developer}</a> </p>
-            <p>Publisher: <a>{data_game.publisher}</a> </p>
+            <p>Developer: <a>{gameData.developer}</a> </p>
+            <p>Publisher: <a>{gameData.publisher}</a> </p>
           </div>
           <div className="details">
-            Release date: {data_game.release_date}
+            Release date: {gameData.releaseDate}
           </div>
         </div>
       </div>

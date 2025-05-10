@@ -10,4 +10,5 @@ public interface GameRepository extends JpaRepository<GameModel, UUID> {
     boolean existsByName(String name);
 
     GameModel findByName(String name);
+
 }

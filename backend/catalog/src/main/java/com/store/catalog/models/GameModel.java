@@ -41,6 +41,8 @@ public class GameModel implements Serializable {
     @Column(nullable = false)
     private String publisher;
 
+    private String gameImg;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "gameModel")
     private List<GamePlatformModel> gamePlatformModels;

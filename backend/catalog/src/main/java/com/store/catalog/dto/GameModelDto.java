@@ -11,6 +11,7 @@ public record GameModelDto(
         @NotBlank String publisher,
         @NotBlank String developer,
         @NotBlank String releaseDate,
+        String gameImg,
         List<GamePlatformModelDto> platforms
 ) {
 }

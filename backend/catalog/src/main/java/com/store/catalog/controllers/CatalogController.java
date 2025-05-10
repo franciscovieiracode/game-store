@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/catalog")
@@ -27,4 +29,8 @@ public class CatalogController {
         return ResponseEntity.status(HttpStatus.CREATED).body(gameService.save(gameModelDto));
     }
 
+    @GetMapping("/findById/{gameId}")
+    public ResponseEntity<Optional<GameModel>> getGameId(@PathVariable("gameId") UUID gameId) {
+        return ResponseEntity.status(HttpStatus.OK).body(gameService.findById(gameId));
+    }
 }
