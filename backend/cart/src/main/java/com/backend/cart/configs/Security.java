@@ -1,20 +1,20 @@
-package com.store.backend.configs;
+package com.backend.cart.configs;
 
-import com.store.backend.utils.JwtAuthFilter;
-import jakarta.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import com.backend.cart.utils.JwtAuthFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import jakarta.servlet.Filter;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class Security {
 
     @Autowired
     JwtAuthFilter jwtAuthFilter;
@@ -28,7 +28,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated())
                 .addFilterBefore((Filter) jwtAuthFilter,
                         org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class)
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())) 
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .build();
     }
 
@@ -45,5 +45,4 @@ public class SecurityConfig {
         return source;
     }
 
-
-    }
+}
