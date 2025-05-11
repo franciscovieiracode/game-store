@@ -34,6 +34,10 @@ public class GameService {
         return gameRepository.findAll();
     }
 
+    public List<GameModel> getMostSold(){
+        return gameRepository.findMostSold();
+    }
+
     public Optional<GameModel> findById(UUID gameId){
         return gameRepository.findById(gameId);
     }
@@ -73,6 +77,11 @@ public class GameService {
 
         return gameModel;
     }
+    public List<GameModel> getByCategory(String category){
 
+        PlatformEnums platformEnum = PlatformEnums.valueOf(category);
+
+        return gameRepository.findByPlatformEnums(platformEnum);
+    }
 
 }

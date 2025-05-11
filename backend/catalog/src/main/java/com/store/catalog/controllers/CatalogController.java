@@ -33,4 +33,14 @@ public class CatalogController {
     public ResponseEntity<Optional<GameModel>> getGameId(@PathVariable("gameId") UUID gameId) {
         return ResponseEntity.status(HttpStatus.OK).body(gameService.findById(gameId));
     }
+
+    @GetMapping("/findByCategory/{category}")
+    public ResponseEntity<List<GameModel>> getByCategory(@PathVariable("category") String category){
+        return ResponseEntity.status(HttpStatus.OK).body(gameService.getByCategory(category));
+    }
+
+    @GetMapping("/getMostSold")
+    public ResponseEntity<List<GameModel>> getMostSold(){
+        return ResponseEntity.status(HttpStatus.OK).body(gameService.getMostSold());
+    }
 }

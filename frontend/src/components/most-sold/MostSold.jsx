@@ -12,7 +12,7 @@ export const MostSold = () => {
     useEffect(() => {
         const fetchGames = async () => {
             try {
-                const data_games = await gameService.getAllGames();
+                const data_games = await gameService.getMostSoldGames();
                 setGames(data_games); 
                 setLoading(false); 
             } catch (err) {

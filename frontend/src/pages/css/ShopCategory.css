@@ -1,0 +1,64 @@
+.cat {
+    display: flex;
+    flex: 1 ;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 2.5vh;
+}
+
+.cat img {
+    max-height: 35vh;
+    max-width: 100%;
+}
+
+.cat h3 {
+    margin-top: 3vh;
+    color: #171717;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+.cat hr {
+    width: 200px;
+    height: 6px;
+    border-radius: 10px;
+    background: #252525;
+    margin-bottom: 5vh;
+}
+.cat-games {
+  display: flex;
+  flex-wrap: wrap;   /* Allow wrapping to next row */
+  justify-content: center; 
+  margin: 0;
+}
+
+.cat-games .game-item {
+  flex: 0 0 23%; /* Ensure each game item takes up 23% of the container's width (4 items per row) */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2vh; 
+}
+
+
+
+
+
+/* Media query for devices smaller than a laptop */
+@media screen and (max-width: 1024px) {
+    .cat-games {
+        flex-direction: column;
+        gap: 4vh;
+    }
+
+    .cat h1 {
+        margin-top: 3vh;
+        color: #171717;
+        font-size: 2.2rem;
+        font-weight: 700;
+    }
+}

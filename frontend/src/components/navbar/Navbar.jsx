@@ -23,9 +23,9 @@ export const Navbar = () => {
       </Link>
 
       <ul className='nav-menu'>
-        <li><Link to="/pc">PC</Link></li>
-        <li><Link to="/playstation">Playstation</Link></li>
-        <li><Link to="/xbox">XBOX</Link></li>
+        <li><Link to="/PC">PC</Link></li>
+        <li><Link to="/PS5">Playstation</Link></li>
+        <li><Link to="/XBOX">XBOX</Link></li>
         <li><img src={search_icon} alt="Search" /></li>
       </ul>
 

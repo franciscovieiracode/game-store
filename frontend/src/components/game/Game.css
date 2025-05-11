@@ -3,6 +3,7 @@
     width: 100%;
     cursor: pointer;
     justify-content: center;
+    margin-bottom: 6vh;
 }
 
 .game img {

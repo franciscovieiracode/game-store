@@ -7,7 +7,7 @@ import { ShopCategory } from "./pages/ShopCategory";
 import { GameDetail } from "./pages/GameDetail";
 import { Cart } from "./pages/Cart";
 import { Footer } from "./components/footer/Footer";
-import {UserProvider} from './contexts/UserContext';
+import { UserProvider } from "./contexts/UserContext";
 
 const App = () => {
   return (
@@ -16,12 +16,7 @@ const App = () => {
         <Navbar></Navbar>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/pc" element={<ShopCategory category="pc" />} />
-          <Route
-            path="/playstation"
-            element={<ShopCategory category="playstation" />}
-          />
-          <Route path="/xbox" element={<ShopCategory category="xbox" />} />
+          <Route path="/:category" element={<ShopCategory />} />
           <Route path="/game" element={<GameDetail />}>
             <Route path=":gameId" element={<GameDetail />}></Route>
           </Route>
