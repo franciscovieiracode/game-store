@@ -1,5 +1,6 @@
 package com.backend.cart.controllers;
 
+import com.backend.cart.dto.GameDetailsModel;
 import com.backend.cart.dto.ItemDto;
 import com.backend.cart.dto.ItemRemoveDto;
 import com.backend.cart.models.CartModel;
@@ -20,8 +21,13 @@ public class CartController {
     CartService cartService;
 
     @GetMapping("/getCart")
-    public ResponseEntity<List<CartModel>> getCart(Authentication authentication){
-        return ResponseEntity.status(HttpStatus.OK).body(cartService.getAll(authentication));
+    public ResponseEntity<List<CartModel>> getCart(){
+        return ResponseEntity.status(HttpStatus.OK).body(cartService.getAll());
+    }
+
+    @GetMapping("getCartById")
+    public ResponseEntity<List<GameDetailsModel>> getCartById(Authentication authentication){
+        return ResponseEntity.status(HttpStatus.OK).body(cartService.getAllById(authentication));
     }
 
     @PostMapping("/addItemToCart")

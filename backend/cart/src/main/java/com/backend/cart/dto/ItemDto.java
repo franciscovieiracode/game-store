@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public record ItemDto(
     @NotBlank String itemId,
-    @NotBlank int quantity
+    @NotBlank int quantity,
+    @NotBlank String platform
 ) {
 }

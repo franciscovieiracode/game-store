@@ -7,11 +7,12 @@ import profile_icon from '../assets/profile_icon.png'; // add a user icon image
 import { Link } from 'react-router-dom';
 import { useUser } from '../../contexts/UserContext';
 import { Menu } from '@headlessui/react';
+import { useCart } from '../../contexts/CartContext';
 
 export const Navbar = () => {
   const { user, logout } = useUser();
   const [showDropdown, setShowDropdown] = useState(false);
-  
+  const {totalQuantity} = useCart();
 
   return (
     <div className='navbar'>
@@ -53,7 +54,7 @@ export const Navbar = () => {
         <Link to="/cart">
           <img src={cart} alt="Cart" />
         </Link>
-        <div className="nav-cart-count">0</div>
+        <div className="nav-cart-count">{totalQuantity}</div>
       </div>
     </div>
   );
